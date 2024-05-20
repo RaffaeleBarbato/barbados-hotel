@@ -1,12 +1,12 @@
 package com.barbados.service;
 
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 
 import java.util.List;
 
 public interface IUserService {
-    User registerUser(User user);
-    List<User> getUsers();
+    Utente registerUser(Utente user);
+    List<Utente> getUsers();
     void deleteUser(String email);
-    User getUser(String email);
+    Utente getUser(String email);
 }

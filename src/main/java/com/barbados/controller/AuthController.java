@@ -1,7 +1,8 @@
+
 package com.barbados.controller;
 
 import com.barbados.exception.UserAlreadyExistsException;
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 import com.barbados.request.LoginRequest;
 import com.barbados.response.JwtResponse;
 import com.barbados.security.jwt.JwtUtils;
@@ -14,15 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/auth")
@@ -31,8 +31,9 @@ public class AuthController {
     private final IUserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+
     @PostMapping("/register-user")
-    public ResponseEntity<?> registerUser(@RequestBody User user){
+    public ResponseEntity<?> registerUser(@RequestBody Utente user){
         try{
             userService.registerUser(user);
             return ResponseEntity.ok("Registration successful!");
@@ -59,5 +60,5 @@ public class AuthController {
                 jwt,
                 roles));
     }
-
 }
+

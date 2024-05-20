@@ -1,7 +1,7 @@
 package com.barbados.security.user;
 
 import com.barbados.model.Role;
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ public class HotelUserDetails implements UserDetails {
     private String password;
     private Collection<GrantedAuthority> authorities;
 
-    public static HotelUserDetails buildUserDetails(User user)
+    public static HotelUserDetails buildUserDetails(Utente user)
     {
         List<GrantedAuthority> authorities = user.getRoles()
                 .stream()

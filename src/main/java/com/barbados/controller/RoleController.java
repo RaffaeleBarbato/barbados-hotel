@@ -3,7 +3,7 @@ package com.barbados.controller;
 
 import com.barbados.exception.RoleAlreadyExistException;
 import com.barbados.model.Role;
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 import com.barbados.service.IRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -45,13 +45,13 @@ public class RoleController {
     }
 
     @PostMapping("/remove-user-from-role")
-    public User removeUserFromRole(
+    public Utente removeUserFromRole(
             @RequestParam("userId") Long userId,
             @RequestParam("roleId") Long roleId){
         return roleService.removeUserFromRole(userId, roleId);
     }
     @PostMapping("/assign-user-to-role")
-    public User assignUserToRole(
+    public Utente assignUserToRole(
             @RequestParam("userId") Long userId,
             @RequestParam("roleId") Long roleId){
         return roleService.assignRoleToUser(userId, roleId);

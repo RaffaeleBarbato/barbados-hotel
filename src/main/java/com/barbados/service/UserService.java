@@ -1,7 +1,7 @@
 package com.barbados.service;
 
 import com.barbados.exception.UserAlreadyExistsException;
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 import com.barbados.model.Role;
 import com.barbados.repository.RoleRepository;
 import com.barbados.repository.UserRepository;
@@ -22,7 +22,7 @@ public class UserService implements IUserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public User registerUser(User user) {
+    public Utente registerUser(Utente user) {
         if (userRepository.existsByEmail(user.getEmail())){
             throw new UserAlreadyExistsException(user.getEmail() + " already exists");
         }
@@ -34,14 +34,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<Utente> getUsers() {
         return userRepository.findAll();
     }
 
     @Transactional
     @Override
     public void deleteUser(String email) {
-        User theUser = getUser(email);
+        Utente theUser = getUser(email);
         if (theUser != null){
             userRepository.deleteByEmail(email);
         }
@@ -49,8 +49,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUser(String email) {
+    public Utente getUser(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("Utente not found"));
     }
 }

@@ -3,7 +3,7 @@ package com.barbados.service;
 import com.barbados.exception.RoleAlreadyExistException;
 import com.barbados.exception.UserAlreadyExistsException;
 import com.barbados.model.Role;
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 import com.barbados.repository.RoleRepository;
 import com.barbados.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -46,20 +46,20 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public User removeUserFromRole(Long userId, Long roleId) {
-        Optional<User> user = userRepository.findById(userId);
+    public Utente removeUserFromRole(Long userId, Long roleId) {
+        Optional<Utente> user = userRepository.findById(userId);
         Optional<Role>  role = roleRepository.findById(roleId);
         if (role.isPresent() && role.get().getUsers().contains(user.get())){
             role.get().removeUserFromRole(user.get());
             roleRepository.save(role.get());
             return user.get();
         }
-        throw new UsernameNotFoundException("User not found");
+        throw new UsernameNotFoundException("Utente not found");
     }
 
     @Override
-    public User assignRoleToUser(Long userId, Long roleId) {
-        Optional<User> user = userRepository.findById(userId);
+    public Utente assignRoleToUser(Long userId, Long roleId) {
+        Optional<Utente> user = userRepository.findById(userId);
         Optional<Role>  role = roleRepository.findById(roleId);
         if (user.isPresent() && user.get().getRoles().contains(role.get())){
             throw new UserAlreadyExistsException(

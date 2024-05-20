@@ -1,6 +1,6 @@
 package com.barbados.security.user;
 
-import com.barbados.model.User;
+import com.barbados.model.Utente;
 import com.barbados.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,8 @@ public class HotelUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        Utente user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Utente not found"));
         return HotelUserDetails.buildUserDetails(user);
     }
 }

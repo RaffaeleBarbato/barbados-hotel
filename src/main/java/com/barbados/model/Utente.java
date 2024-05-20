@@ -12,7 +12,7 @@ import java.util.HashSet;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class Utente {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
